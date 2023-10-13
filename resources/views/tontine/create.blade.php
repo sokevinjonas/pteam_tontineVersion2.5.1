@@ -43,7 +43,7 @@
                         <div class="form-group col-md-6">
                             <label for="delay">Délai:</label>
                             <input id="delay" name="delay" type="text" placeholder="Délai"
-                                class="form-control required-field" required>
+                                class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="periode">Période:</label>
@@ -57,12 +57,12 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="delay">Date début:</label>
-                            <input name="date_debut" id="date_debut" type="date" class="form-control required-field" min="<?php echo date('Y-m-d'); ?>">
+                            <input name="date_debut" id="date_debut" type="date" class="form-control">
                         </div>                        
                         <div class="form-group col-md-6">
                             <label for="periode">Date fin:</label>
                             <input name="date_fin" id="date_fin" type="date" placeholder="Délai"
-                                class="form-control required-field" readonly>
+                                class="form-control" readonly>
                         </div>
                         <div class="form-group col-12">
                             <label for="description">Description:</label>

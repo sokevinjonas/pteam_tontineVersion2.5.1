@@ -33,31 +33,31 @@
                         <input class="form-control @error('username') is-invalid @enderror" name="username"
                             id="username" value="{{ old('username') }}" placeholder="Nom utlisateur" type="text"
                             required />
-                        @error('username')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fa-solid fa-user"></span>
                             </div>
                         </div>
+                        @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="input-group mb-3">
                         <input class="form-control @error('password') is-invalid @enderror" name="password"
-                        id="password" value="{{ old('password') }}" placeholder="Mot de passe" type="password"
-                        required />
-                    @error('password')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                            id="password" value="{{ old('password') }}" placeholder="Mot de passe" type="password"
+                            required />
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
+                        @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-7">

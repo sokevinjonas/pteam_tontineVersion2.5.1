@@ -54,19 +54,19 @@
                                    // _token: '{{ csrf_token() }}'
                                },
                                success: function(response) {
-                                   if (response.msg) {
-                                       swal("Succès!", response.message,
-                                           "success");
-                                   } else {
-                                       swal("Erreur!", response.message,
-                                           "error");
-                                   }
-                                   console.log(response.message);
+                                //    if (response.msg) {
+                                //        swal("Succès!", response.message,
+                                //            "success");
+                                //    } else {
+                                //        swal("Erreur!", response.message,
+                                //            "error");
+                                //    }
+                                //    console.log(response.message);
+
+                                   // Rechargez la page automatiquement après avoir traité la réponse
+                                   location.reload(true);
                                },
-                               complete: function() {
-                                   $('.btn-success').removeAttr(
-                                       'disabled');
-                               }
+
                            });
                        });
 

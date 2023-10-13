@@ -186,6 +186,7 @@ class TontineController extends Controller
             sweetalert()->addSuccess('Nouveau participant créé !');
         }
 
+
         $tontine->participation()->create([
             'user_id' => $participant->id,
             'tontine_id' => $tontine->id,
@@ -200,9 +201,15 @@ class TontineController extends Controller
      * Display the specified resource.
      */
     public function show(Tontine $tontine)
-    {
-        return view('tontine.detail', compact('tontine'));
-    }
+{   
+   
+    // Récupère les prises suivantes de la tontine
+    $prises = $tontine->PrisesSuivantes();
+    // dd($prises);
+    // Retourne la vue avec la tontine et les prises suivantes
+    return view('tontine.detail', compact('tontine', 'prises'));
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -211,7 +218,6 @@ class TontineController extends Controller
     {
         return view('');
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -221,7 +227,6 @@ class TontineController extends Controller
 
         return to_route('');
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -253,6 +258,7 @@ class TontineController extends Controller
                     $query->where('last_name', 'LIKE', "%{$last_name}%")
                         ->where('first_name', 'LIKE', "%{$first_name}%");
                 })
+
                 ->orWhere('phone_number', 'LIKE',  "%{$term}%")
                 ->get();
 
@@ -266,6 +272,7 @@ class TontineController extends Controller
 {
     $userId = $request->input('user_id');
     $tontineId = $request->input('tontine_id');
+    $tontine = Tontine::find($tontineId);
     // Assurez-vous que $tontineId contient une valeur valide
     if ($tontineId) {
         // Exemple de validation côté serveur (dans votre contrôleur)
@@ -275,22 +282,24 @@ class TontineController extends Controller
                 'user_id' => $userId,
                 'tontine_id' => $tontineId,
                 'nombre_bras' => 1,
-                'rank' => 1 // Assurez-vous d'avoir l'objet $tontine disponible ici
+                'rank' =>  $tontine->participationRank()// Assurez-vous d'avoir l'objet $tontine disponible ici
                 // Autres champs
             ]);
 
             // Message flash pour indiquer que la participation a été ajoutée avec succès
             sweetalert()->addSuccess('Nouveau participant créé !');
 
-            return response()->json(['msg' => true, 'message' => 'Participation ajoutée avec succès']);
+            // return response()->json(['msg' => true, 'message' => 'Participation ajoutée avec succès']);
         } else {
             // Message flash si la participation existe déjà
             sweetalert()->addWarning('Cet participant existe déjà.');
-            return response()->json(['msg' => false, 'message' => 'Cet participant existe déjà.']);
+            // return response()->json(['msg' => false, 'message' => 'Cet participant existe déjà.']);
         }
     } else {
         // Si $tontineId est vide, il y a un problème avec la récupération de l'ID de la tontine
-        return response()->json(['msg' => false, 'message' => 'ID de la tontine invalide.']);
+        // return response()->json(['msg' => false, 'message' => 'ID de la tontine invalide.']);
+        sweetalert()->addWarning('Une erreur est survenu lors de l\enregistrement');
+
     }
 }
 

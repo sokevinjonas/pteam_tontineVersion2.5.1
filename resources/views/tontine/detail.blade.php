@@ -4,7 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <!-- Widget: user widget style 2 -->
         <div class="row">
             <div class="col">
@@ -12,7 +12,7 @@
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header bg-secondary">
                         <h2 class="widget-user-username">{{ $tontine->name }}</h2>
-                        <h5 class="widget-user-desc">Créé le {{ $tontine->created_at }}</h5>
+                        <h5 class="widget-user-desc">Créé le {{ $tontine->created_at->isoFormat('Do MMMM YYYY') }}</h5>
                         <button class="text-danger">Status : {{ $tontine->status }}</button>
                     </div>
                 </div>
@@ -20,7 +20,8 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a href="" class="nav-link text-secondary">
-                                Debute le <span class="float-right badge bg-primary">{{ $tontine->date_debut }}</span>
+                                Debute le <span
+                                    class="float-right badge bg-primary">{{ $tontine->date_debut->isoFormat('Do MMMM YYYY') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -53,9 +54,9 @@
         </div>
     </div>
     <!-- /.widget-user -->
-    <section class="content-header">
-        <div class="container-fluid my-2">
-            <marquee behavior="left" direction="right"><b>Le prochain paiement est le <span class="text-warning">10 Novembre 2023</span></b></marquee>
+        <div class="container-fluid">
+            {{-- <marquee behavior="left" direction="right"><b>La prochain prise est le <span class="text-warning">
+                {{$dateSuivante}}</span></b></marquee> --}}
             <div class="row justify-content-center align-items-center d-flex">
                 <div class="col-sm-12 col-md-12 col-lg-7">
                     <h1>Liste des Participants</h1>
@@ -77,39 +78,38 @@
             </div>
         </div>
         <!-- /.container-fluid -->
-    </section>
     <div class="row">
         <div class="col-12">
             <div class="card-body">
-                <table id="example1" class="table table-bordered">
+                <table id="example1" class="table responsive ">
                     <thead>
                         <tr>
                             <th>Nom (s)</th>
                             <th>Bras</th>
                             <th>Rang</th>
                             <th>Cotisation</th>
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($tontine->participation as $participation)
                             {{-- {{dd($tontine,$tontine->participation,$tontine->number_of_members)}} --}}
                             <tr>
-                                <td><a
-                                        href="#">{{ $participation->user->last_name . ' ' . $participation->user->first_name }}</a>
+                                <td>
+                                    <a
+                                        href="">{{ $participation->user->last_name . ' ' . $participation->user->first_name }}
+                                    </a>
                                 </td>
-                                <td><a href="#">{{ $participation->nombre_bras }}</a></td>
+                                <td>
+                                    <a href="#">{{ $participation->nombre_bras }}
+                                    </a>
+                                </td>
                                 <td> {{ $participation->rank }} </td>
                                 <td> {{ $participation->cotisations->count() }}
                                     / {{ $tontine->number_of_members }}
                                 <td>
-                                    <button class="btn btn-warning cotiser-btn"
-                                        data-participation-id="{{ $participation->id }}">Cotiser
-                                    </button>
-                                    <button class="btn btn-success cotiser-btn"
-                                    >Prise
-                                    </button>
-
+                                    <a href="" class="btn btn-warning cotiser-btn" data-toggle="modal" data-target="#modal-cotiser">Cotiser</a>
+                                    <a href="" class="btn btn-success cotiser-btn">Prise</a>
                                 </td>
                             </tr>
                         @empty

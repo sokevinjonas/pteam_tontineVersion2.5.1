@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="row mt-5">
-            @foreach ($tontines as $tontine)
+            @forelse($tontines as $tontine)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <a href="{{ route('tontine.show', $tontine->id) }}" class="text-decoration-none">
                         <div class="small-box bg-info">
@@ -30,7 +30,9 @@
                         </div>
                     </a>
                 </div>
-            @endforeach
+                @empty 
+                    <h5 class="alert alert-info text-center">Aucune Tontine disponibles !</h5>
+            @endforelse
         </div>
     </div>
 @endsection
