@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tontine;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = Auth()->user();
-        $user = Tontine::where('user_id', $users->id)->get();
-    return view('dashboard', compact('user'));
+        //
     }
 
     /**

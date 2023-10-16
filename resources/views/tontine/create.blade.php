@@ -1,4 +1,4 @@
-<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">
     Ajouter un nouveau
 </button>
 <div class="modal fade" id="modal-default">
@@ -15,8 +15,8 @@
                     @csrf
                     <div class="form-group col-md-12">
                         <label for="number_of_members">Nombre de membres:</label>
-                        <select name="number_of_members" id="number_of_members">
-                            <option value="">-Definir-</option>
+                        <select name="number_of_members" class="form-control" id="number_of_members">
+                            <option value="">0</option>
                         </select>
                     </div>
                     <div class="row row-cols-2 text-start">
@@ -28,7 +28,7 @@
                         <div class="form-group col-md-6">
                             <label for="profit">Frais:</label>
                             <select id="profit" name="profit" class="form-control required-field">
-                                <option value="">--Choisir--</option>
+                                <option value="">0</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -38,16 +38,32 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="amountOutput">Montant à Payer:</label>
-                            <input id="amountOutput" name="amount_payer" type="number" readonly >
+                            <input id="amountOutput" name="amount_payer" class="form-control type="number" readonly >
                         </div>
                         <div class="form-group col-md-6">
                             <label for="delay">Délai:</label>
-                            <input id="delay" name="delay" type="text" placeholder="Délai"
-                                class="form-control" required>
+                            {{-- <select name="delay" class="form-control required-field">
+                                @for ($i=1; $i<=11 ; $i++)
+                                <option value="{{$i}}">{{{$i}}}</option>
+                                @endfor
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                            </select> --}}
+                            <input id="delay" name="delay" type="number" placeholder="Délai"
+                                class="form-control" required-field>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="periode">Période:</label>
-                            <select id="periode" name="periode" class="form-select" required>
+                            <select id="periode" name="periode" class="form-select" required-field>
                                 <option value="">--Choisir--</option>
                                 <option value="day">Jour</option>
                                 <option value="week">Semaine</option>
@@ -57,7 +73,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="delay">Date début:</label>
-                            <input name="date_debut" id="date_debut" type="date" class="form-control">
+                            <input name="date_debut" id="date_debut" type="date" class="form-control required-field">
                         </div>                        
                         <div class="form-group col-md-6">
                             <label for="periode">Date fin:</label>

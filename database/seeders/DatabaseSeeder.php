@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Abdoul Aziz',
             'phone_number' => 73471085,
             'username' => 'ao627515',
-            'role' => 'organizer',
+            'role' => 'participant',
             'password' => Hash::make('12345678'),
         ]);
 

@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('tontine.addParticipant', $tontine) }}">
                     @csrf
-                    <div class="row">
+                    <div class="row text-start">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nom:</label>
@@ -43,8 +43,13 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nombre de bras (Nombre de place occupé)</label>
-                                <input type="number" name="nombre_bras" class="form-control" id="exampleInputEmail1"
-                                     value="1" required>
+                                {{-- <input type="number" name="nombre_bras" class="form-control" id="exampleInputEmail1"
+                                     value="1" required> --}}
+                                     <select name="nombre_bras" class="form-control" required>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                     </select>
                             </div>
                         </div>
                         <div class="col-12">

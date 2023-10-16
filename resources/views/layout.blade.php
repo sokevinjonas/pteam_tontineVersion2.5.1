@@ -33,11 +33,6 @@
             </ul>
             <!-- Liens de la barre de navigation à gauche -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
                         <img src="../../dist/img/user2-160x160.jpg" class='img-circle elevation-2' width="40"
@@ -79,7 +74,7 @@
                         <li class="nav-item" style="margin-top: 10px;">
                             <a href="{{ route('dashboard.index') }}" class="nav-link" style="font-size: 20px;">
                                 <i class="fas fa-tachometer-alt fa-lg"></i>
-                                <p>Dashboard</p>
+                                <p>Accueil</p>
                             </a>
                         </li>
                         <li class="nav-item" style="margin-top: 10px;">

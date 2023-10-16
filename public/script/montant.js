@@ -21,7 +21,7 @@
             // Récupère les éléments d'entrée
             const number_of_members = document.getElementById('number_of_members');
             // Génère les options du menu déroulant avec JavaScript
-            for (let i = 5; i <= 20; i += 1) {
+            for (let i = 1; i <= 10; i += 1) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = i;

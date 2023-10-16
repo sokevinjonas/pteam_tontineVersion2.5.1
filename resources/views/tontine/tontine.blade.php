@@ -1,12 +1,5 @@
 @extends('layout')
 @section('title', 'MES TONTINES')
-
-@section('css')
-    <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-@endsection
-
-
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center justify-content-xs-center justify-content-lg-end">
@@ -17,15 +10,19 @@
         <div class="row mt-5">
             @forelse($tontines as $tontine)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <a href="{{ route('tontine.show', $tontine->id) }}" class="text-decoration-none">
+                    <a href="{{ route('tontine.show', ['tontine'=>$tontine->id]) }}" class="text-decoration-none">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h4>{{ $tontine->name }}</h4>
-                                <h5>Participants: {{ $tontine->number_of_members }}</h5>
-                                <b>Participations : {{ $tontine->amount_payer }}fcfa</b>
+                                <div class="d-flex justify-content-between ">
+                                    <h4 class="text-start">{{ $tontine->name }} </h4> 
+                                    {{-- <a href="" style="text-decoration: none"> --}}
+                                    {{-- </a> --}}
+                                </div>
+                                <h5 class="text-start">Participants: {{ $tontine->number_of_members }}</h5>
+                                <h5 class="text-start">Participations : {{ $tontine->amount_payer }}fcfa</h5>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-shopping-cart"></i>
+                                {{-- <i class="fas fa-delete"></i> --}}
                             </div>
                         </div>
                     </a>

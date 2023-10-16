@@ -15,7 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('participation_id')->constrained();
             $table->string('periode')->nullable();
-            $table->integer('nbr_cotisations')->default(0); // Ajoutez la colonne 'nbr_cotisations'
+            $table->integer('nbr_cotisations')->default(0);
+            $table->enum('prise', ['oui', 'non']); // Ajoutez la colonne 'nbr_cotisations'
             $table->timestamps();
         });
     }
