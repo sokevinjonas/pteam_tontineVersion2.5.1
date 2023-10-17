@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function(){
     ]);
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+    Route::get('myprofile', [DashboardController::class, 'profile'])->name('user.profile');
+    Route::post('cotiser', [ParticipationController::class, 'cotiser'])->name('participation.cotiser');
+    // Route::get('faq', [DashboardController::class, 'faq'])->name('user.faq');
 
     // Ajouté un participant a une tontine
     Route::post('tontine/{tontine}/add/participant', [TontineController::class, 'addParticipant'])->name('tontine.addParticipant');
@@ -56,6 +59,7 @@ Route::middleware(['auth'])->group(function(){
 
     // Show detaille participant
     Route::get('user/{user}/particpant', [UserController::class, 'showParticipant'])->name('user.showParticipant');
+    Route::post('password_change', [UserController::class, 'update_password'])->name('user.update_password');
 
     //Route pour cotisation
     Route::post('/cotiser/{participation}', [CotisationController::class, 'cotiser'])->name('majcotisation');

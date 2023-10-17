@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col col-md-6 col-12 col-lg-6">
                 <a href="{{route('tontine.index')}}">
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>{{$user->count()}}</h3>
 
@@ -21,7 +21,7 @@
                 <a href="">
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>10</h3>
+                            <h3>1 Ans</h3>
 
                             <p>Renouveller mon forfait</p>
                         </div>

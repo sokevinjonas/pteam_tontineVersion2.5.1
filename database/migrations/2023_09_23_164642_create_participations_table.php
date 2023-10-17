@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignUuid('tontine_id')->constrained();
             $table->integer('nombre_bras');
             $table->integer('rank');
+            $table->integer('nbr_cotisations')->default(0);
+            $table->enum('prise', ['oui', 'non']);
             $table->date('date_prise')->nullable(); // Ajoutez la colonne date_prise de type date
             $table->timestamps();
         });

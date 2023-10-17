@@ -17,6 +17,11 @@ class DashboardController extends Controller
     return view('dashboard', compact('user'));
     }
 
+    public function profile(){
+        $user = Auth()->user();
+
+        return view('user.profile', compact('user'));
+    }
     /**
      * Show the form for creating a new resource.
      */

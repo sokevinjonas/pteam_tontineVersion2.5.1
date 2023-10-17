@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Tontine;
 use Illuminate\Http\Request;
 use App\Models\Participation;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\StoreUserRequest;
 
 class UserController extends Controller
@@ -83,7 +85,7 @@ class UserController extends Controller
 
                 User::create(array_merge($data, [
                     'role' => 'participant',
-                    'user_id' => $userAuth->id
+                    'user_id' => $userAuth->id,
                 ]));
 
                 sweetalert()->addSuccess('Nouveau participant créé !');
@@ -95,8 +97,37 @@ class UserController extends Controller
             // creation des organisateurs et des administrateurs
         }
     }
+    
+    public function update_password(Request $request)
+    {
+        try {
+            $request->validate([
+                'old_password' => 'required',
+                'new_password' => 'required|string|min:6|confirmed',
+                'new_password_confirmation' => 'required|string|min:6',
+            ]);
+        
+            $user = Auth::user();
+        
+            if (Hash::check($request->old_password, $user->password)) {
+                if ($request->new_password === $request->new_password_confirmation) {
+                    $user->password = Hash::make($request->new_password);
+                    // dd($user);
+                    $user->save();
+                    return redirect()->back()->with('success', 'Mot de passe mis à jour avec succès.');
+                } else {
+                    echo"La confirmation du nouveau mot de passe ne correspond pas.";
+                    // return redirect()->back()->withErrors(['new_password_confirmation' => 'La confirmation du nouveau mot de passe ne correspond pas.'])->withInput();
+                }
+            } else {
+                    echo"Ancien mot de passe incorrect.";
+                // return redirect()->back()->withErrors(['old_password' => 'Ancien mot de passe incorrect.'])->withInput();
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
 
-
+    }
     /**
      * Display the specified resource.
      */
@@ -105,10 +136,7 @@ class UserController extends Controller
 
     }
 
-    public function showParticipant(User $user)
-    {
-        return view('', compact('user'));
-    }
+
 
 
 
@@ -131,12 +159,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
-    {
-        $user->delete();
+    // public function destroy(User $user)
+    // {
+    //     $user->delete();
 
-        sweetalert()->addSuccess('Participant supprimée !');
+    //     sweetalert()->addSuccess('Participant supprimée !');
 
-        return back();
-    }
+    //     return back();
+    // }
 }

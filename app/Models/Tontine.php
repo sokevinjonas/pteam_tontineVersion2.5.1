@@ -138,6 +138,30 @@ class Tontine extends Model
         return $prises;
     }
 
+    public function cotiser($participationId, $periode, $prise)
+{
+    // Récupérez la participation associée
+    $participation = Participation::find($participationId);
+
+    // Vérifiez si le nombre de cotisations est inférieur ou égal au nombre de participants
+    if ($participation->nbr_cotisations >= $participation->tontine->participants->count()) {
+        return false; // Le nombre de cotisations a atteint le nombre de participants
+    }
+
+    // Créez une nouvelle cotisation
+    Cotisation::create([
+        'participation_id' => $participationId,
+        'periode' => $periode,
+        'prise' => $prise,
+    ]);
+
+    // Mettez à jour le nombre de cotisations dans la participation associée
+    $participation->nbr_cotisations += 1;
+    $participation->save();
+
+    return true; // Cotisation enregistrée avec succès
+}
+
 
     public function isStart()
     {

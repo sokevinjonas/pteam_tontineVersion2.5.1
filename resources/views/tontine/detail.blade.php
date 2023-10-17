@@ -44,13 +44,22 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link text-secondary">
                                 Période <span class="float-right badge bg-danger"> Chaque
-                                    {{ $tontine->delay . ' ' . $tontine->periode }}
+                                    {{ $tontine->delay}}
+                                    @if ($tontine->periode === 'week')
+                                    Semaine
+                                    @elseif ($tontine->periode === 'day')
+                                        Jour
+                                    @elseif ($tontine->periode === 'month')
+                                    Mois
+                                    @else
+                                    Ans
+                                    @endif
                                 </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link text-secondary">
-                                Date de Fin <span class="float-right badge bg-info">{{ $tontine->date_fin }}</span>
+                                Date de Fin <span class="float-right badge bg-info">{{ $tontine->date_fin}}</span>
                             </a>
                         </li>
                     </ul>
@@ -96,9 +105,11 @@
                     <div class="card-body">
                         <h5 class="card-text text-start">{{ $t->user->last_name . ' ' . $t->user->first_name }}</h5>
                         <p class="card-text">Tél: {{ $t->user->phone_number }}</p>
-                        <p class="card-text">Prise : <span class="text-warning">Non</span></p>
+                        <p class="card-text">Prise : <span class="text-warning">{{$t->prise}}</span></p>
                         <p class="card-text">Nombre cotisation : <span class="text">0/{{ $tontine->number_of_members }}</span></p>
-                        <a href="#" class="btn btn-danger">Cotiser</a>
+                        <form action="{{route('participation.cotiser', ['participant_id' => $t->id])}}" method="post">
+                            <button type="submit" class="btn btn-danger">Cotiser</button>
+                        </form>
                     </div>
                 </div>
             </div>                       

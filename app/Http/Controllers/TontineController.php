@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Throwable;
 use App\Models\User;
 use App\Models\Tontine;
+use App\Models\Cotisation;
 use Illuminate\Http\Request;
 use App\Models\Participation;
 use App\Http\Controllers\Controller;
@@ -109,6 +110,8 @@ class TontineController extends Controller
 
         return back();
     }
+    
+    
 
     public function addParticipant(StoreUserRequest $request, Tontine $tontine)
     {
@@ -153,7 +156,8 @@ class TontineController extends Controller
                 'role' => 'participant',
                 'identity_document_front' => ' ',
                 'identity_document_back' => ' ',
-                'user_id' => $userAuth->id
+                'user_id' => $userAuth->id,
+
             ]));
 
 
@@ -180,7 +184,8 @@ class TontineController extends Controller
 
             $participant = User::create(array_merge($data, [
                 'role' => 'participant',
-                'user_id' => $userAuth->id
+                'user_id' => $userAuth->id,
+
             ]));
 
             sweetalert()->addSuccess('Nouveau participant créé !');
@@ -191,7 +196,9 @@ class TontineController extends Controller
             'user_id' => $participant->id,
             'tontine_id' => $tontine->id,
             'nombre_bras' => $data['nombre_bras'],
-            'rank' => $tontine->participationRank()
+            'rank' => $tontine->participationRank(),
+            'prise' => 'non',
+
         ]);
 
         return redirect()->back();

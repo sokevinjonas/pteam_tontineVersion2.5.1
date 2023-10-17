@@ -11,7 +11,7 @@
             @forelse($tontines as $tontine)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <a href="{{ route('tontine.show', ['tontine'=>$tontine->id]) }}" class="text-decoration-none">
-                        <div class="small-box bg-info">
+                        <div class="small-box bg-warning">
                             <div class="inner">
                                 <div class="d-flex justify-content-between ">
                                     <h4 class="text-start">{{ $tontine->name }} </h4> 

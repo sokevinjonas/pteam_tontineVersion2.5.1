@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Participation;
+use App\Models\Tontine;
 use Illuminate\Http\Request;
+use App\Models\Participation;
 
 class ParticipationController extends Controller
 {
@@ -16,7 +17,13 @@ class ParticipationController extends Controller
 
         return view('', compact('participations'));
     }
-
+    // public function cotiser(Participation $participation, Tontine $tontine)
+    // {
+    //     $participationId = $participation::where('user_id', $participation->id)->get();
+    //     dd($participationId);
+    //     $nbr_place = $tontine->currentMembersNumber();
+        
+    // }
     /**
      * Show the form for creating a new resource.
      */
@@ -30,7 +37,7 @@ class ParticipationController extends Controller
      */
     public function store(Request $request)
     {
-        Participation::create($request->all());
+        
 
         return to_route('');
     }
@@ -46,28 +53,28 @@ class ParticipationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Participation $participation)
-    {
-        return view('', compact('participation'));
-    }
+    // public function edit(Participation $participation)
+    // {
+    //     return view('', compact('participation'));
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Participation $participation)
-    {
-        $participation->update($request->all());
+    // public function update(Request $request, Participation $participation)
+    // {
+    //     $participation->update($request->all());
 
-        return to_route('');
-    }
+    //     return to_route('');
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Participation $participation)
-    {
-        $participation->delete();
+    // public function destroy(Participation $participation)
+    // {
+    //     $participation->delete();
 
-        return to_route('');
-    }
+    //     return to_route('');
+    // }
 }
